@@ -17,6 +17,8 @@ description: "信息整理能力：把杂乱、碎片、多源信息快速转化
 3. **不删除，只更替**——旧事实标 `status: superseded` 并指向 `superseded_by`，绝不物理删除，保留演进轨迹。
 4. **资产化**——整理的产物必须沉淀为可复用模板/台账/知识卡片，而非一次性输出。
 
+> **type 可自定义扩展**：通用枚举外，可在工作区 `knowledge/MEMORY.md` 注册垂直行业 type，见 [five-dimension-tagging.md](references/five-dimension-tagging.md) 注册机制。
+
 ## 不适用边界（加载后若命中以下场景，应退出本 Skill，回退裸答或转交）
 
 本 Skill 专注"把杂乱信息结构化为知识资产"。若用户真实意图属以下场景，**不要**套用打标/入桶/台账流程：
@@ -48,6 +50,8 @@ description: "信息整理能力：把杂乱、碎片、多源信息快速转化
 | urgency 紧急程度 | 立即/本周/归档备查 | 处理时限 |
 | relates_to 关联事项 | 项目名/流程名 | 与什么相关 |
 | gist 关键信息 | ≤20 字一句话提炼 | 核心内容 |
+
+> 另有 3 个可选扩展维度（priority/audience/confidential），缺省有默认值，详见 [five-dimension-tagging.md](references/five-dimension-tagging.md)。
 
 再用 **三段式提炼** 压缩长文档（见 [distill-long-doc 场景](scenes/distill-long-doc.md)）：
 - **背景是什么**——这事为什么发生、上下文。
@@ -102,6 +106,8 @@ knowledge/
 | 要提炼长文档要点（三段式压缩） | [scenes/distill-long-doc.md](scenes/distill-long-doc.md) |
 | 要把整理结果沉淀为模板/台账/可复用资产 | [scenes/persist-as-asset.md](scenes/persist-as-asset.md) |
 | 要做周度/月度复盘合并 | [scenes/weekly-synthesis.md](scenes/weekly-synthesis.md) |
+| 要统计台账、出趋势简报 | [scenes/stats.md](scenes/stats.md) |
+| 要设定时自动整理/周度自动复盘 | [scenes/scheduled-review.md](scenes/scheduled-review.md) |
 
 ## 场景速查
 
@@ -111,6 +117,8 @@ knowledge/
 - [提炼长文档要点](scenes/distill-long-doc.md)：三段式压缩长文档为知识卡片。
 - [沉淀为可复用模板/台账](scenes/persist-as-asset.md)：把重复出现的同类事项抽象为模板。
 - [周度复盘合并](scenes/weekly-synthesis.md)：重写 summary、合并同类模板、清理失效项。
+- [统计台账出简报](scenes/stats.md)：Grep 统计 CSV 按维度分组，产出趋势简报。
+- [定时自动复盘](scenes/scheduled-review.md)：用 schedule skill 设周度任务自动触发 weekly-synthesis。
 
 ## 验收标准
 

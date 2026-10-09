@@ -8,6 +8,9 @@ gist: <关键信息，≤20字一句话>
 date: <YYYY-MM-DD>
 status: active
 superseded_by: <可选，仅 status=superseded 时填新卡片路径>
+priority: <高|中|低>          # 可选，默认 中
+audience: <接收对象>          # 可选，默认 本人
+confidential: <公开|内部|机密>  # 可选，默认 内部
 ---
 
 # <标题>

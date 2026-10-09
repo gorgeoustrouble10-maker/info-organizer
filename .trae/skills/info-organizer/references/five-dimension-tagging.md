@@ -12,21 +12,45 @@
 | 关联事项 | `relates_to` | 自由文本：项目名/流程名 | 与什么相关，可多值用逗号 |
 | 关键信息 | `gist` | 自由文本，**≤20 字**一句话 | 核心内容浓缩 |
 
+## 可选扩展维度（可选，缺省有默认值）
+
+五维之外，以下3字段为可选，缺省时按默认值处理：
+
+| 维度 | 字段 | 取值 | 默认 | 说明 |
+|---|---|---|---|---|
+| 优先级 | `priority` | 枚举：高 / 中 / 低 | 中 | 处理优先级 |
+| 受众 | `audience` | 自由文本：接收/知会对象 | 本人 | 谁需知会 |
+| 密级 | `confidential` | 枚举：公开 / 内部 / 机密 | 内部 | 保密等级 |
+
+> 仅写入知识卡片 frontmatter，不进 information-ledger.csv 台账（避免破坏旧台账行）。需按 priority 统计时用 Grep 搜卡片 frontmatter。
+
 ## 完整 frontmatter schema
 
 ```yaml
 ---
 title: <一句话标题>           # 必填，卡片标题
 source: <来源>                # 必填
-type: <枚举值>                # 必填
+type: <枚举值或注册值>         # 必填
 urgency: <枚举值>             # 必填
 relates_to: <关联>            # 可多值，逗号分隔
 gist: <≤20字关键信息>          # 必填
 date: <YYYY-MM-DD>            # 必填，信息日期
 status: active                 # 必填，active | superseded
 superseded_by: <可选，新卡片路径>  # 仅 status=superseded 时填
+priority: <高|中|低>          # 可选，默认 中
+audience: <接收对象>          # 可选，默认 本人
+confidential: <公开|内部|机密>  # 可选，默认 内部
 ---
 ```
+
+## type 扩展注册机制
+
+通用 type 枚举（制度文件/会议纪要/数据报表/通知公告/项目资料/其他）覆盖通用办公。垂直行业可注册自定义 type：
+
+- 注册位置：工作区 `knowledge/MEMORY.md` 的 `## 自定义 type 注册表` 章节
+- 格式：`- 行业: 值1/值2/值3`
+- 打标优先用已注册值；拿不准选"其他"并在 gist 说明；确认新行业 type 时回写 MEMORY.md 注册表
+- 注册后该值即纳入 type 候选枚举
 
 ## 打标规则
 
