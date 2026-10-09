@@ -51,7 +51,9 @@ description: "信息整理能力：把杂乱、碎片、多源信息快速转化
 | relates_to 关联事项 | 项目名/流程名 | 与什么相关 |
 | gist 关键信息 | ≤20 字一句话提炼 | 核心内容 |
 
-> 另有 3 个可选扩展维度（priority/audience/confidential），缺省有默认值，详见 [five-dimension-tagging.md](references/five-dimension-tagging.md)。
+> **type 行业优先（必做）**：若信息含行业关键词（合同/案例/法条/病历/医嘱/报告/需求/设计/缺陷单），type **必须**用对应注册值（法律:合同/案例/法条；医疗:病历/医嘱/报告；研发:需求/设计/缺陷单），**不落通用枚举**。例："医嘱执行复核单"→`type: 医嘱`（非项目资料）；"外包合同审阅"→`type: 合同`。
+
+> **可选字段必查（必做）**：信息提到具体接收人/责任人（如"赵护士长""张律师"）→ 填 `audience`；涉敏感事项（合同/薪酬/人事/病历/医嘱）→ 填 `confidential`（机密/内部）；有紧急/关键决策信号 → 填 `priority`（高/中/低）。能填则填不留空。另有 3 个可选扩展维度（priority/audience/confidential）缺省有默认值，详见 [five-dimension-tagging.md](references/five-dimension-tagging.md)。
 
 再用 **三段式提炼** 压缩长文档（见 [distill-long-doc 场景](scenes/distill-long-doc.md)）：
 - **背景是什么**——这事为什么发生、上下文。
