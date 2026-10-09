@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / logs
+*.log
+*.tmp
+
+# Trae runtime cache (保留 skills / documents)
+.trae/cache/
