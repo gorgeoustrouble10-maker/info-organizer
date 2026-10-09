@@ -98,8 +98,8 @@ status: active
 
 ## 检索配合
 
-打标后，可用 Grep 按 frontmatter 字段检索：
-- 按来源：`Grep pattern: "source: 行政部"`
-- 按类型：`Grep pattern: "type: 会议纪要"`
-- 按关联：`Grep pattern: "relates_to:.*考勤"`
-- 按 gist 关键词：`Grep pattern: "gist:.*考勤"`
+打标后，用平台文件检索能力按 frontmatter 字段检索（Trae 中为 Grep，其他平台对应等价工具）：
+- 按来源：搜索 `source: 行政部`
+- 按类型：搜索 `type: 会议纪要`
+- 按关联：正则匹配 `relates_to:.*考勤`
+- 按 gist 关键词：正则匹配 `gist:.*考勤`

@@ -2,7 +2,7 @@
 
 把杂乱、碎片、多源的信息，快速转化为**结构化、可检索、可复用**的知识资产。
 
-面向 [Trae](https://www.trae.cn/) AI 体系的**基础信息管理类 Skill**——所有文员/办公 Skill 的地基。"判断什么是重要信息"需要业务理解、AI 难以替代，正是真正的杠杆点。
+**跨平台通用 Agent Skill**（Trae/Claude/Cursor/OpenAI/纯 Prompt）——所有文员/办公 Skill 的地基。"判断什么是重要信息"需要业务理解、AI 难以替代，正是真正的杠杆点。
 
 > **不是学一个软件操作，而是建立一套思维习惯和工作系统。** 掌握了它，学 Excel 更快（懂得先理清数据逻辑），学自动化提效更容易（清楚哪些重复环节值得被自动化）。
 
@@ -66,9 +66,9 @@ knowledge/
 ### 8. 不适用边界（防误触发）
 加载后若命中以下场景，应退出本 Skill 回退裸答或转交：
 - 纯写作表达（写通知/邮件/汇报草稿）→ 直接写
-- 纯消息传递（发群/转发）→ 走 lark-im
-- 纯任务/日程执行（建日程/建任务）→ 走 lark-calendar/lark-task
-- 纯数据计算（求和/透视）→ 走 lark-sheets/Excel
+- 纯消息传递（发群/转发）→ 用通讯/IM 工具或对应能力
+- 纯任务/日程执行（建日程/建任务）→ 用日历/任务管理工具
+- 纯数据计算（求和/透视）→ 用表格/计算工具
 - 用户明确只要一个直接答案 → 直接答
 
 ### 9. 六大场景 SOP
@@ -79,7 +79,7 @@ knowledge/
 | 沉淀模板 | 同类事项重复出现 | 可复用模板（存 resources/templates/） |
 | 周度复盘 | 要求周度/月度合并 | 重写 summary + 合并模板 + 清理失效 + 周报 |
 | 统计简报 | 要求统计台账/出趋势 | 按维度分组统计 + 趋势简报 |
-| 定时自动复盘 | 要求设周度自动任务 | 调 schedule skill 设 cron 周度触发 weekly-synthesis |
+| 定时自动复盘 | 要求设周度自动任务 | 调平台定时任务能力（Trae 中为 schedule skill）设 cron 周度触发 weekly-synthesis |
 
 ### 10. 可量化验收标准
 - 任何经手文件，**30 秒内**用 Grep/Glob 找到
@@ -120,7 +120,16 @@ info-organizer/
 
 ## 安装
 
-### 工作区安装（单个工作区的 Agent 可用）
+跨平台安装支持——见 [`.trae/skills/info-organizer/adapters/`](.trae/skills/info-organizer/adapters/) 目录：
+
+| 平台 | 安装方式 | 说明 |
+|---|---|---|
+| Trae 工作区 | 复制文件夹到 `.trae\skills\` | 见下方"Trae 工作区安装" |
+| Trae 全局 | 复制到 `.trae-cn\builtin\global\skills\` | 见下方"Trae 全局安装" |
+| 任何大模型（ChatGPT/Claude/豆包等） | 粘贴 prompt 即用 | 见 [adapters/prompt-only/SKILL.md](.trae/skills/info-organizer/adapters/prompt-only/SKILL.md) |
+| Claude/Cursor/OpenAI | 待扩展（等真实反馈） | 见 [adapters/](.trae/skills/info-organizer/adapters/) 目录 |
+
+### Trae 工作区安装（单工作区 Agent 可用）
 ```powershell
 cd D:\你的工作区
 New-Item -ItemType Directory -Force -Path ".\.trae\skills"
@@ -128,7 +137,7 @@ git clone https://github.com/gorgeoustrouble10-maker/info-organizer $env:TEMP\io
 Copy-Item "$env:TEMP\io\.trae\skills\info-organizer" ".\.trae\skills\info-organizer" -Recurse -Force
 ```
 
-### 全局安装（跨所有工作区，重启 Trae 后生效）
+### Trae 全局安装（跨所有工作区，重启 Trae 后生效）
 ```powershell
 $src = "<clone目录>\.trae\skills\info-organizer"
 $dst = "$env:USERPROFILE\.trae-cn\builtin\global\skills\info-organizer"
@@ -151,6 +160,8 @@ Copy-Item $src $dst -Recurse -Force
 Agent 会产出知识卡片（`type: 医嘱`、`audience: 赵护士长`、`confidential: 机密`、`priority: 高`），入 projects 桶，登记台账，写日记。
 
 ### 精简 Prompt（任何 Agent 即用，零安装）
+
+> 完整版见 [adapters/prompt-only/SKILL.md](.trae/skills/info-organizer/adapters/prompt-only/SKILL.md)（含最新 type 行业优先 + 桶解耦 + 可选维度必查改进）。下方为历史精简版：
 ```
 你是信息整理专家。对用户发来的任何杂乱信息，按以下流程处理：
 【三段式】标准化输入 → 结构化处理 → 资产化输出

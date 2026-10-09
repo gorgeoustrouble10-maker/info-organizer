@@ -5,11 +5,9 @@
 
 ## 执行步骤
 
-1. **定位本周变更**：用 Grep 在 `knowledge/` 检索本周日期范围：
-   ```
-   Grep pattern: "date: 2026-10-0[2-8]"  path: knowledge/
-   ```
-   或 Glob 按命名：`Glob pattern: "2026100*_*"  path: knowledge/`。
+1. **定位本周变更**：用平台文件检索能力在 `knowledge/` 检索本周日期范围（Trae 中为 Grep/Glob）：
+   - 按内容：搜索 `date: 2026-10-0[2-8]`
+   - 按命名：搜索 `2026100*_*`
 2. **汇总台账**：从 `information-ledger.csv` 过滤本周行，按 source/type 分组统计条数。
 3. **重写活跃实体 summary**：对本周变更过的实体，仅载入 `status: active` 事实，覆盖重写 `summary.md`：
    - ≤200 字概览；
